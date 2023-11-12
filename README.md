@@ -1,6 +1,6 @@
 # Retro Bank 💰
 
-Console-based banking application written in C#. Its simple but but built by the book. Implents a layered app structure: with a data access layer, business logic layer, and presentation layer. Demonstrates all core principles of OOP and C# and is the final project for the C# Masterclass.
+Console-based banking application written in C#. Its simple but but built by the book. Implents a layered architecture: with a data access layer, business logic layer, and presentation layer. Demonstrates all core principles of OOP and C# and is the final project for the C# Masterclass.
 
 ## Features 🚀
 
