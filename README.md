@@ -23,11 +23,7 @@ These instructions will get you a copy of the project up and running on your loc
 1. Clone the repository
 2. Open the solution in Visual Studio
 3. Run the application
-
-<<<<<<< HEAD
-[CS Banking App](csharp-console-example.png)
-
 <div style="background-color:black; padding:20px;">
     <img src="csharp-console-example.png" alt="CS Banking App">
 </div>
-=======
+
