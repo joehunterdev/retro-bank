@@ -24,4 +24,4 @@ These instructions will get you a copy of the project up and running on your loc
 2. Open the solution in Visual Studio
 3. Run the application
 
-[CS Banking App](csharp-console-example.png)
+![CS Banking App](csharp-console-example.png)
