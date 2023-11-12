@@ -31,5 +31,3 @@ These instructions will get you a copy of the project up and running on your loc
     <img src="csharp-console-example.png" alt="CS Banking App">
 </div>
 =======
-![CS Banking App](csharp-console-example.png)
->>>>>>> 09f83e14f20ca35329156bae94517422bca464f8
