@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using JoeBank.Entities; //Contains account
 using JoeBank.Exceptions;
 using JoeBank.DataAccesLayer.DALContracts; // for extending interface ITransfersDataAccessLayer CRUD
-using System.Linq;
 namespace JoeBank.DataAccesLayer
 {
     /// <summary>

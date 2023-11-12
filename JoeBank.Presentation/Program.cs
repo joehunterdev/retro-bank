@@ -7,23 +7,29 @@ class Program
     static void Main()
     {
 
-        Console.WriteLine("------JoeBank------");
-        Console.WriteLine("LoginPage:");
+        ConsoleOutputManager op = new ConsoleOutputManager();
+
+        op.WriteLine("                           $$$$$\\                           $$$$$$$\\                      $$\\                               \r\n                           \\__$$ |                          $$  __$$\\                     $$ |                              \r\n                              $$ | $$$$$$\\   $$$$$$\\        $$ |  $$ | $$$$$$\\  $$$$$$$\\  $$ |  $$\\                         \r\n$$$$$$\\ $$$$$$\\ $$$$$$\\       $$ |$$  __$$\\ $$  __$$\\       $$$$$$$\\ | \\____$$\\ $$  __$$\\ $$ | $$  |$$$$$$\\ $$$$$$\\ $$$$$$\\ \r\n\\______|\\______|\\______|$$\\   $$ |$$ /  $$ |$$$$$$$$ |      $$  __$$\\  $$$$$$$ |$$ |  $$ |$$$$$$  / \\______|\\______|\\______|\r\n                        $$ |  $$ |$$ |  $$ |$$   ____|      $$ |  $$ |$$  __$$ |$$ |  $$ |$$  _$$<                          \r\n                        \\$$$$$$  |\\$$$$$$  |\\$$$$$$$\\       $$$$$$$  |\\$$$$$$$ |$$ |  $$ |$$ | \\$$\\                         \r\n                         \\______/  \\______/  \\_______|      \\_______/  \\_______|\\__|  \\__|\\__|  \\__|                        \r\n                                                                                                                            \r\n                                                                                                                 ");
+        op.WriteLine("-----------Login---------");
+        op.WriteLine("");
+
 
         string userName = null, password = null;
 
-        Console.Write("Username: ");
+        op.Write("Username: ");
+        //Console.SetCursorPosition(10, 10);
+
         userName = Console.ReadLine();
 
 
         if (userName != "")
         {
-            Console.Write("Password: ");
+            op.Write("Password: ");
 
             password = Console.ReadLine();
         } 
 
-        if (userName == "system" && password == "manager" )
+        if (userName == "system" && password == "iloveyou" )
         {
 
             int mainMenuChoice = -1; // should be accessible outside do while block
@@ -31,15 +37,16 @@ class Program
             do
             {
 
-                Console.WriteLine("\n:::Main Menu:::");
-                Console.WriteLine("1. Customers");
-                Console.WriteLine("2. Accounts");
-                Console.WriteLine("3. Transfer ");
-                Console.WriteLine("8. Generate Some Data");
+                Console.WriteLine(" ");
+                op.WriteLine(":::Main Menu:::");
+                op.WriteLine("1. Customers");
+                op.WriteLine("2. Accounts");
+                op.WriteLine("3. Transfer ");
+                op.WriteLine("8. Generate Some Data");
 
-                Console.WriteLine("0. Exit");
+                op.WriteLine("0. Exit");
 
-                Console.WriteLine("Enter Choice: ");
+                op.Write("Enter Choice: ");
 
                 mainMenuChoice = int.Parse(Console.ReadLine());
 
@@ -72,32 +79,34 @@ class Program
         else
         {
 
-            Console.WriteLine("Invalid");
+            op.WriteLine("Invalid");
 
         }
 
-        Console.WriteLine("Invalid Credentials");
+        op.WriteLine("Invalid Credentials");
         Console.ReadKey();
 
 
         static void CustomerMenu()
         {
+            ConsoleOutputManager op = new ConsoleOutputManager();
 
             int customerMenuChoice = -1;
 
             do
             {
-                Console.WriteLine("\n:::Customer:::");
-                Console.WriteLine("1. Add");
-                Console.WriteLine("2. Delete");
-                Console.WriteLine("3. Edit");
-                Console.WriteLine("4. Search");
-                Console.WriteLine("5. View All");
-                Console.WriteLine("0. Exit");
+                Console.WriteLine(" ");
 
-                Console.WriteLine("Enter Choice: ");
+                op.WriteLine(":::Customer:::");
+                op.WriteLine("1. Add");
+                op.WriteLine("2. Delete");
+                op.WriteLine("3. Edit");
+                op.WriteLine("4. Search");
+                op.WriteLine("5. View All");
+                op.WriteLine("0. Exit");
 
-                //customerMenuChoice = int.Parse(Console.ReadLine().Trim());
+                op.Write("Enter Choice: ");
+
                 customerMenuChoice = Convert.ToInt32(Console.ReadLine().Trim()); // Two ways to convert to int
 
                 switch (customerMenuChoice)
@@ -116,22 +125,24 @@ class Program
 
         static void AccountsMenu()
         {
+            ConsoleOutputManager op = new ConsoleOutputManager();
 
             int accountsMenuChoice = -1;
 
             do
             {
-                Console.WriteLine("\n:::Accounts:::");
-                Console.WriteLine("1. Add");
-                Console.WriteLine("2. Delete");
-                Console.WriteLine("3. Edit");
-                Console.WriteLine("4. Search");
-                Console.WriteLine("5. View All");
-                Console.WriteLine("6. Statement");
+                Console.WriteLine(" ");
+                op.WriteLine(":::Accounts:::");
+                op.WriteLine("1. Add");
+                op.WriteLine("2. Delete");
+                op.WriteLine("3. Edit");
+                op.WriteLine("4. Search");
+                op.WriteLine("5. View All");
+                op.WriteLine("6. Statement");
 
-                Console.WriteLine("0. Exit");
+                op.WriteLine("0. Exit");
 
-                Console.WriteLine("Enter Choice: ");
+                op.Write("Enter Choice: ");
 
                 //accountsMenuChoice = int.Parse(Console.ReadLine().Trim());
                 accountsMenuChoice = Convert.ToInt32(Console.ReadLine().Trim()); // Two ways to convert to int
@@ -155,16 +166,18 @@ class Program
 
         static void TransferMenu()
         {
+            ConsoleOutputManager op = new ConsoleOutputManager();
 
             int transfersMenuChoice = -1;
 
             do
             {
-                Console.WriteLine("\n:::Transfer:::");
-                Console.WriteLine("1. Add Transfer");
-                Console.WriteLine("2. View Transfers");
-                Console.WriteLine("0. Exit");
-                Console.WriteLine("Enter Choice: ");
+                Console.WriteLine(" ");
+                op.WriteLine(":::Transfer:::");
+                op.WriteLine("1. Add Transfer");
+                op.WriteLine("2. View Transfers");
+                op.WriteLine("0. Exit");
+                op.Write("Enter Choice: ");
 
                 transfersMenuChoice = Convert.ToInt32(Console.ReadLine().Trim());
 

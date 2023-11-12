@@ -70,6 +70,7 @@ namespace JoeBank.BusinessLogicLayer
         /// </returns>
         public Guid AddTransfer(Transfer transfer)
         {
+            //ConsoleOutputManager op = new ConsoleOutputManager();
 
             try
             {

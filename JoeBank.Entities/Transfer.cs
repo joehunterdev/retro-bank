@@ -1,6 +1,5 @@
 ﻿using System;
 using JoeBank.Entities.Contracts;
-using JoeBank.Exceptions;
 
 namespace JoeBank.Entities
 {

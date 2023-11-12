@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using JoeBank.Entities;
-using JoeBank.Exceptions;
 using JoeBank.BusinessLogicLayer;
 using JoeBank.BusinessLogicLayer.BALContracts;
 namespace JoeBank.Presentation
@@ -11,18 +10,19 @@ namespace JoeBank.Presentation
         //create an object of account
         internal static void AddAccount()
         {
+            ConsoleOutputManager op = new ConsoleOutputManager();
 
             try
             {
                 Account account = new Account();
 
                 //read all details from the user
-                Console.WriteLine("\n********ADD ACCOUNT*************");
-                Console.Write("Account Holder Name:"); //should do a check here against existing names
+                op.WriteLine("********ADD ACCOUNT*************");
+                op.Write("Account Holder Name:"); //should do a check here against existing names
                 account.AccountOwnerName = Console.ReadLine();
-                Console.Write("Account Pin Number:");
+                op.Write("Account Pin Number:");
                 account.AccountPin = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Account type: credit, debit, savings ? ");
+                op.Write("Account type: credit, debit, savings ? ");
                 account.AccountType = Console.ReadLine();
 
                 //Create BL Object
@@ -35,14 +35,14 @@ namespace JoeBank.Presentation
 
                 if (matchingAccounts.Count >= 1)
                 {
-                    Console.WriteLine("Account Added.\n");
-                    Console.WriteLine("New Account Number created: " + matchingAccounts[0].AccountNumber);
+                    op.WriteLine("Account Added.\n");
+                    op.WriteLine("New Account Number created: " + matchingAccounts[0].AccountNumber);
                 }
                 else
                 {
-                    Console.WriteLine("Account Not added");
+                    op.WriteLine("Account Not added");
                 }
-                //Console.WriteLine("Account Added with Id: " + accountCode); // will return back to the top
+                //op.WriteLine("Account Added with Id: " + accountCode); // will return back to the top
 
             }
             catch (Exception ex) //have to speciy type of exception
@@ -58,6 +58,8 @@ namespace JoeBank.Presentation
 
         internal static void ViewAccounts()
         {
+            ConsoleOutputManager op = new ConsoleOutputManager();
+
             try
             {
                 // Create BL Object
@@ -66,34 +68,34 @@ namespace JoeBank.Presentation
                 //List of type accounts assign to allAccounts is equal to the Bl Object we created above access method
                 List<Account> allAccounts = accountsBusinessLogicLayer.GetAccounts();
 
-                Console.WriteLine("\n**********ALL ACCOUNTS*************");
+                op.WriteLine("**********ALL ACCOUNTS*************");
 
                 foreach (var item in allAccounts)
                 {
 
-                    Console.WriteLine("Account Number: " + item.AccountNumber);
-                    Console.WriteLine("Account Holder Name: " + item.AccountOwnerName);
-                    Console.WriteLine("Account Type: " + item.AccountType);
-                    Console.WriteLine("Account Balance: " + item.AccountBalance);
+                    op.WriteLine("Account Number: " + item.AccountNumber);
+                    op.WriteLine("Account Holder Name: " + item.AccountOwnerName);
+                    op.WriteLine("Account Type: " + item.AccountType);
+                    op.WriteLine("Account Balance: " + item.AccountBalance);
 
                     if (item.Transfers != null)
                     {
-                        Console.WriteLine("Total Transfers: " + item.Transfers.Count);
+                        op.WriteLine("Total Transfers: " + item.Transfers.Count);
 
                         foreach (var item2 in item.Transfers)
                         {
-                            Console.WriteLine("Transfer: Amount " + item2.TransferAmount + " Date:" + item2.TransferDate);
+                            op.WriteLine("Transfer: Amount " + item2.TransferAmount + " Date:" + item2.TransferDate);
 
                         }
                     }
 
 
-                    Console.WriteLine();
+                    op.WriteLine("");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                op.WriteLine(ex.Message);
                 Console.WriteLine(ex.GetType());
                 throw;
             }
@@ -104,15 +106,17 @@ namespace JoeBank.Presentation
 
         internal static void EditAccount()
         {
+            ConsoleOutputManager op = new ConsoleOutputManager();
+
             try
             {
 
-                Console.WriteLine("\n**********UPDATE ACCOUNT*************");
+                op.Write("**********UPDATE ACCOUNT*************");
 
                 // Create BL Object
                 IAccountsBusinessLogicLayer accountsBusinessLogicLayer = new AccountsBusinessLogicLayer();
 
-                Console.WriteLine("\n**********Enter a account number*************");
+                op.Write("Enter a account number:");
 
                 long accountCode = Convert.ToInt32(Console.ReadLine());
 
@@ -122,16 +126,16 @@ namespace JoeBank.Presentation
                 ////Find account 
                 if (matchingAccounts.Count >= 1)
                 {
-                    Console.WriteLine("Account : " + matchingAccounts[0].AccountNumber + " found");
-                    Console.WriteLine("Update Details: ");
-                    Console.Write("Account Owner Name: ");
+                    op.WriteLine("Account : " + matchingAccounts[0].AccountNumber + " found");
+                    op.WriteLine("Update Details: ");
+                    op.Write("Account Owner Name: ");
                     matchingAccounts[0].AccountOwnerName = Console.ReadLine();
-                    Console.Write("Account Type: ");
+                    op.Write("Account Type: ");
                     matchingAccounts[0].AccountType = Console.ReadLine();
   
                     if (accountsBusinessLogicLayer.UpdateAccount(matchingAccounts[0])) {
 
-                        Console.WriteLine("Account Updated Successfully");
+                        op.WriteLine("Account Updated Successfully");
 
                     }  
 
@@ -139,14 +143,14 @@ namespace JoeBank.Presentation
                 }
                 else {
 
-                    Console.WriteLine("No Account found");
+                    op.WriteLine("No Account found");
                 }
 
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                op.WriteLine(ex.Message);
                 Console.WriteLine(ex.GetType());
                 throw;
             }
@@ -155,16 +159,18 @@ namespace JoeBank.Presentation
 
         internal static void DeleteAccount()
         {
+            ConsoleOutputManager op = new ConsoleOutputManager();
+
             try
             {
 
-                Console.WriteLine("\n**********DELETE ACCOUNT AREA*************");
+                op.WriteLine("**********DELETE ACCOUNT AREA*************");
 
 
                 // Create BL Object
                 IAccountsBusinessLogicLayer accountsBusinessLogicLayer = new AccountsBusinessLogicLayer();
 
-                Console.WriteLine("\n**********Enter a account code*************");
+                op.Write("Enter a account code:");
 
                 long accountCode = Convert.ToInt32(Console.ReadLine());
 
@@ -175,20 +181,20 @@ namespace JoeBank.Presentation
                 if (matchingAccounts.Count >= 1 && accountsBusinessLogicLayer.DeleteAccount(matchingAccounts[0].AccountID))
                 {
                     
-                   Console.WriteLine("Account Deleted Successfully");
+                   op.WriteLine("Account Deleted Successfully");
 
                 }
                 else
                 {
 
-                    Console.WriteLine("No Account found");
+                    op.WriteLine("No Account found");
                 }
 
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                op.WriteLine(ex.Message);
                 Console.WriteLine(ex.GetType());
                 throw;
             }
@@ -197,15 +203,17 @@ namespace JoeBank.Presentation
 
         internal static void ViewStatement()
         {
+            ConsoleOutputManager op = new ConsoleOutputManager();
+
             try
             {
 
-                Console.WriteLine("\n**********ACCOUNT STATEMENT*************");
+                op.WriteLine("**********ACCOUNT STATEMENT*************");
 
                 // Create BL Object
                 IAccountsBusinessLogicLayer accountsBusinessLogicLayer = new AccountsBusinessLogicLayer();
 
-                Console.WriteLine("\n**********Enter a account number*************");
+                op.Write("Enter a account number:");
 
                 long accNumber = Convert.ToInt32(Console.ReadLine());
 
@@ -216,26 +224,26 @@ namespace JoeBank.Presentation
                 if (matchingAccount!= null)
                 {
     
-                    Console.WriteLine("Account Number: " + matchingAccount.AccountNumber);
-                    Console.WriteLine("Account Holder Name: " + matchingAccount.AccountOwnerName);
-                    Console.WriteLine("Account Type: " + matchingAccount.AccountType);
-                    Console.WriteLine("Account Balance: " + matchingAccount.AccountBalance);
+                    op.WriteLine("Account Number: " + matchingAccount.AccountNumber);
+                    op.WriteLine("Account Holder Name: " + matchingAccount.AccountOwnerName);
+                    op.WriteLine("Account Type: " + matchingAccount.AccountType);
+                    op.WriteLine("Account Balance: " + matchingAccount.AccountBalance);
 
                     if (matchingAccount.Transfers != null)
                     {
-                        Console.WriteLine("Total Transfers: " + matchingAccount.Transfers.Count);
+                        op.WriteLine("Total Transfers: " + matchingAccount.Transfers.Count);
 
                         foreach (var item in matchingAccount.Transfers)
                         {
-                           // Console.WriteLine("Transfer: Amount " + item.TransferAmount + " Date:" + item.TransferDate);
-                            Console.WriteLine($"Date: {item.TransferDate} - Amount: {item.TransferAmount} - From: {item.FromAccountNumber} - To: {item.ToAccountNumber}");
+                           // op.WriteLine("Transfer: Amount " + item.TransferAmount + " Date:" + item.TransferDate);
+                            op.WriteLine($"Date: {item.TransferDate} - Amount: {item.TransferAmount} - From: {item.FromAccountNumber} - To: {item.ToAccountNumber}");
 
 
                         }
                     } else
                     {
 
-                        Console.WriteLine("No Transfers found");
+                        op.WriteLine("No Transfers found");
                     }
 
 
@@ -244,14 +252,14 @@ namespace JoeBank.Presentation
                 else
                 {
 
-                    Console.WriteLine("No Account found");
+                    op.WriteLine("No Account found");
                 }
 
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                op.WriteLine(ex.Message);
                 Console.WriteLine(ex.GetType());
                 throw;
             }

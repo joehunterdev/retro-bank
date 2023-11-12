@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JoeBank.Configuration
+﻿namespace JoeBank.Configuration
 {
     /// <summary>
     /// Project level configuration settings
